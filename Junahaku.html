@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Junahaku.js"></script>
+</head>
+<body>
+<h1>Junahaku</h1>
+<table>
+    <tr><td>Lähtöasema</td><td><input list="asemat" id="lahtoasema"></td></tr>
+    <tr><td>Määränpää</td><td><input list="asemat" id="maaranpaa"></td></tr>
+</table>
+
+<datalist id="asemat"></datalist>
+
+<input type="button" value="Hae junat" onclick="naytaValitut()">
+
+<ul id="tulos"></ul>
+<ul id="toinenkaupunki"></ul>
+
+<ul id="junalista"></ul>
+
+</body>
+</html>
