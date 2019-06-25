@@ -7,7 +7,7 @@ function init() {
 function hae() {
     pyynto = new XMLHttpRequest();
     pyynto.onreadystatechange=tilanmuutos;
-    pyynto.open("GET", "https://rata.digitraffic.fi/api/v1/live-trains/station/");
+    pyynto.open("GET", "https://rata.digitraffic.fi/api/v1/live-trains/");
     pyynto.send();
     console.log("Pyyntö lähetetty");
 }
@@ -15,7 +15,7 @@ function tilanmuutos() {
     console.dir(pyynto);
     if (pyynto.readyState===4){
         console.log(pyynto.responseText);
-        //document.getElementById("jotain").innerText=pyynto.responseText;
+        //document.getElementById("jotain").innerText=asemapyynto.responseText;
         junat = JSON.parse(pyynto.responseText)
         tulosta(junat);
     }
