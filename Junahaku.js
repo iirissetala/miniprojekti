@@ -7,10 +7,9 @@ var junat; // lista junista annetuilla asemilla
 
  document.addEventListener("DOMContentLoaded", init);
  function init() {
-     // document.getElementById("nappi").addEventListener("click", hae);
      hae();
  }
-
+//Haetaan asemat, joista käyttäjä saa valita lähtö- ja pääteaseman
      function hae() {
          asemapyynto = new XMLHttpRequest();
          asemapyynto.onreadystatechange = tilanmuutos;
@@ -18,7 +17,6 @@ var junat; // lista junista annetuilla asemilla
          asemapyynto.send();
          console.log("Pyyntö lähetetty");
      }
-
      function tilanmuutos() {
          console.dir(asemapyynto);
          if (asemapyynto.readyState === 4) {
@@ -28,7 +26,6 @@ var junat; // lista junista annetuilla asemilla
              tulosta(asemat);
          }
      }
-
      function tulosta(asemat) {
          var asemalista = document.getElementById("asemat")
          for (var i = 0; i < asemat.length; i++) {
@@ -36,16 +33,14 @@ var junat; // lista junista annetuilla asemilla
              console.dir(kaupunki);
              asemalista.innerHTML += "<option value= " + kaupunki.stationShortCode + ">" + kaupunki.stationName + "</option>"
          }
-
      }
-
+//Valitut asemat otetaan talteen, säilötään local storageen ja käytetään seuraavaan hakuun, jossa haetaan junat annettujen asemien välillä
      function naytaValitut() {
          lasema = document.getElementById("lahtoasema").value;
          localStorage.lahtoasema = lasema;
-         document.getElementById("tulos").innerHTML = "Lähtöasema oli " + lasema;
          perilla = document.getElementById("maaranpaa").value;
          localStorage.perilla = perilla;
-         document.getElementById("toinenkaupunki").innerHTML = "Määränpää on " + perilla;
+         document.getElementById("tulos").innerHTML="Junat välillä " + lasema + " - " + perilla + ":"
          haejunat();
      }
 
@@ -71,12 +66,21 @@ var junat; // lista junista annetuilla asemilla
 
          function tulostajunat(junat) {
              var junalista = document.getElementById("junalista")
+
              for (var i = 0; i < junat.length; i++) {
                  var juna = junat[i];
                  console.dir(juna);
-                 junalista.innerHTML += "<li>" + juna.trainCategory + ": " + juna.trainType + juna.trainNumber + "</li>"
+                 junalista.innerHTML += "<li>" + juna.trainCategory + ": " + juna.trainType + juna.trainNumber + "LA" + findLahtoAika(juna.timeTableRows, lasema) +"</li>"
              }
 
+         }
+         function findLahtoAika(timetablerows, asema) {
+            var tr;
+            tr=timetablerows.find(function (row){
+                return row.stationShortCode===asema && row.type==="DEPARTURE";
+            })
+             console.dir(tr);
+            return tr.scheduledTime
          }
 
 
