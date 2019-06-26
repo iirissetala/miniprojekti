@@ -70,8 +70,10 @@ var junat; // lista junista annetuilla asemilla
              for (var i = 0; i < junat.length; i++) {
                  var juna = junat[i];
                  console.dir(juna);
-                 junalista.innerHTML += "<li>" + juna.trainCategory + ": " + juna.trainType + juna.trainNumber + "LA" + findLahtoAika(juna.timeTableRows, lasema) +"</li>"
+                 //Tällä seuraavalla konvertoidaan junan UTC-aika suomen aikaan.
+                 junalista.innerHTML += "<li>" + juna.trainCategory + ": " + juna.trainType + juna.trainNumber + " lähtee " + new Date(findLahtoAika(juna.timeTableRows, lasema) ).toLocaleDateString('FI')+ " kello: "+ new Date(findLahtoAika(juna.timeTableRows, lasema) ).toLocaleTimeString('FI').slice(0, -3); +"</li>"
              }
+
 
          }
          //haetaan junalistan aikatauluriveiltä rivi, jossa junan lähtöaika annetulta lähtöasemalta
@@ -81,7 +83,7 @@ var junat; // lista junista annetuilla asemilla
                 return row.stationShortCode===asema && row.type==="DEPARTURE"; //palauttaa rivin, jossa annettu asemalyhenne ja tyyppi LÄHTÖ
             })
              console.dir(tr);
-            return tr.scheduledTime
+            return tr.scheduledTime;
          }
 
 
