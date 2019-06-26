@@ -6,15 +6,24 @@
     <script src="login.js"></script>
 </head>
 <body>
- <p id="tervetuloa"></p>
-<!--<form name="login">-->
-<!--    Käyttäjänimi<input type="text" name="userid"/>-->
-<!--    Salasana<input type="password" name="pswrd"/>-->
-<!--    <input type="button" onclick="check(this.form)" value="Kirjaudu"/>-->
-<!--    <input type="reset" value="Peruuta"/>-->
-<!--</form>-->
 <div id="top">
-    <input type="button" value="Kirjaudu ulos" id="pnk" onclick="window.location.href='Etusivu.html'">
+
+    <input type="button" value="Kirjaudu ulos" id="pnk" onclick="window.location.href='Etusivu.html'"><!--kirjaudu ulos nappi-->
 </div>
+<p id="hej"></p><!--käyttäjän tervehdys-->
+<div id="vasen">
+    <h2>Junahaku</h2>
+    <table>
+        <tr><td>Lähtöasema</td><td><input list="asemat" id="lahtoasema"></td></tr>
+        <tr><td>Määränpää</td><td><input list="asemat" id="maaranpaa"></td></tr>
+    </table>
+
+
+    <datalist id="asemat"></datalist>
+
+    <input type="button" value="Hae junat" id="pnk" onclick="naytaValitut()">
+</div>
+<p></p>
+
 </body>
 </html>

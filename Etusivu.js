@@ -118,6 +118,7 @@ function junatilanmuutos() {
         //document.getElementById("jotain").innerText=asemapyynto.responseText;
         junat = JSON.parse(junapyynto.responseText)
         tulostajunat(junat);
+       document.getElementById("pnk2").style.display="block";
     }
 }
 
@@ -144,6 +145,8 @@ const lisaaHaettu = (ev)=>{ //haetut junat arraylistana
 document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById('pnk').addEventListener('click', lisaaHaettu)
 });
+
+
 
 
 

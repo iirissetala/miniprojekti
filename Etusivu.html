@@ -9,28 +9,37 @@
 </head>
 <body>
 <div id="vasen">
-    <h1>Junahaku</h1>
+    <h2>Junahaku</h2>
     <table>
         <tr><td>Lähtöasema</td><td><input list="asemat" id="lahtoasema"></td></tr>
         <tr><td>Määränpää</td><td><input list="asemat" id="maaranpaa"></td></tr>
     </table>
 
+
     <datalist id="asemat"></datalist>
 
     <input type="button" value="Hae junat" id="pnk" onclick="naytaValitut()">
+</div>
+<div id="oikea">
+    <h2>Kirjaudu sisään</h2>
+    <table>
 
+    <form name="login">
+        <tr><td>Käyttäjänimi</td><td><input type="text" name="userid"/></td></tr>
+        <tr><td>Salasana</td><td><input type="password" name="pswrd"/></td></tr>
+        <tr><td><input type="button" onclick="check(this.form)" value="Kirjaudu"/></td><td>
+            <input type="reset" value="Peruuta"/></td></tr>
+    </form>
+    </table>
+</div>
+    <div id="bottom">
     <ul id="tulos"></ul>
     <ul id="toinenkaupunki"></ul>
 
     <ul id="junalista"></ul>
-</div>
-<div id="oikea">
-<form name="login">
-    Käyttäjänimi<input type="text" name="userid"/>
-    Salasana<input type="password" name="pswrd"/>
-    <input type="button" onclick="check(this.form)" value="Kirjaudu"/>
-    <input type="reset" value="Peruuta"/>
-</form>
-</div>
+
+
+    </div>
+<input type="button" value="Hae kaikki" id="pnk2" onclick="naytaValitut()">
 </body>
 </html>
