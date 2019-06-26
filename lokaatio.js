@@ -1,4 +1,4 @@
-//alla oleva vaihtoehto mahdollistaa ennalta määrätyn lokaation
+//alla oleva vaihtoehto mahdollistaa ennalta määrätyn lokaation esittämisen kartalla
 // var mymap = L.map('mapdiv').setView([60.1772711, 24.8302072], 13);
 
 
@@ -15,8 +15,6 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     id: 'mapbox.streets',
     accessToken: 'sk.eyJ1IjoiYW5zb2xhaSIsImEiOiJjanhkZXY1cGQwNHhsM3RvY240aHh4OGR2In0.1c4hX9PMV-_8we-49YpU6g'
 }).addTo(mymap);
-//id: 'mapbox.streets'  -> näyttää karttakuvana
-//id: 'mapbox.satellite' -> näyttää sateliittikuvana
 
 //kun lokaatio löytyy, ilmoitetaan käyttäjälle
 function onLocationFound(e) {
@@ -49,3 +47,37 @@ var circle = L.circle([60.1772737,24.8302072], {
 //  marker.bindPopup("<b>Tämä on</b><br>Keilaranta").openPopup();
 circle.bindPopup("Academyn kampus");
 
+var asemat;
+var asemapyynto;
+
+asemapyynto = new XMLHttpRequest();
+asemapyynto.onreadystatechange = statechange;
+asemapyynto.open("GET", "https://rata.digitraffic.fi/api/v1/metadata/stations");
+asemapyynto.send();
+
+
+function statechange(){
+    if (asemapyynto.readyState===4) {
+        asemat = JSON.parse(asemapyynto.responseText);
+        kayLapi(asemat);
+    }
+}
+
+// https://asmaloney.com/2014/01/code/creating-an-interactive-map-with-leaflet-and-openstreetmap/
+// L.geoJSON(geojsonFeature).addTo(mymap);
+
+//GeoJSON layeri juna-asemia varten
+function kayLapi(asemat) {
+    for (var i=0; i< asemat.length; ++i) {
+         var asema = asemat[i];
+
+        // var latitude = a.latitude;
+        // var longitude = a.longitude;
+        console.log(asema);
+        L.marker( [asema.latitude, asema.longitude] )
+            .bindPopup( '<a href="' + asema.stationName + '" target="_blank">' + asema.stationName + '</a>' )
+            .addTo( mymap );
+    }
+}
+//KARTAN TYYLI1  id: 'mapbox.streets'  -> näyttää karttakuvana
+//KARTAN TYYLI12 id: 'mapbox.satellite' -> näyttää sateliittikuvana
