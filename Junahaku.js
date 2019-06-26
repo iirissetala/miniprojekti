@@ -40,7 +40,7 @@ var junat; // lista junista annetuilla asemilla
          localStorage.lahtoasema = lasema;
          perilla = document.getElementById("maaranpaa").value;
          localStorage.perilla = perilla;
-         document.getElementById("tulos").innerHTML="Junat välillä " + lasema + " - " + perilla + ":"
+         document.getElementById("tulos").innerHTML="Junat välillä " + lasema + " - " + perilla + ":";
          haejunat();
      }
 
@@ -59,31 +59,75 @@ var junat; // lista junista annetuilla asemilla
              if (junapyynto.readyState === 4) {
                  console.log(junapyynto.responseText);
                  //document.getElementById("jotain").innerText=asemapyynto.responseText;
-                 junat = JSON.parse(junapyynto.responseText)
-                 tulostajunat(junat);
+                 junat = JSON.parse(junapyynto.responseText);
+                 if (junat.length > 0){
+                     tulostajunat(junat);
+                 }else{
+                     document.getElementById("tulos").innerHTML="Annettujen asemien välillä ei kulje suoraa junayhteyttä."
+                 }
+
              }
          }
+        function tulostajunat(junat) {
+            var junataulukko=document.getElementById("junataulukko")
+            junataulukko.innerHTML="<tr>" + "<th>" + "Junatyyppi" + "<th>" + "Junan numero" + "<th>"+ "Lähtöpäivä" +"<th>" + "Lähtöaika" + "<th>" + "Saapuu määränpäähän" + "</tr>"
+            for (var i=0; i<junat.length; i++){
+                var juna = junat[i];
+                console.dir(juna);
+                var junatyyppi;
+                if (juna.trainCategory==="Commuter"){
+                    junatyyppi= "Lähijuna " + juna.commuterLineID;
+                }else if (juna.trainCategory==="Long-distance"){
+                    junatyyppi="Kaukojuna";
+                }else {
+                    junatyyppi=juna.trainCategory;
+                }
+ //new Date oliolla tehdään datasta saadusta ajasta(CET) Suomen aikaa saapumisaika
+             junataulukko.innerHTML+="<tr>" + "<td>" + junatyyppi + "<td>" + juna.trainType + juna.trainNumber + "<td>" + new Date(etsiLahtoAika(juna.timeTableRows, lasema) ).toLocaleDateString('FI') +"<td>" + new Date(etsiLahtoAika(juna.timeTableRows, lasema) ).toLocaleTimeString('FI').slice(0, -3);
+                 + "<td>" + etsiSaapumisAika(juna.timeTableRows, perilla)+"</tr>"
+    }
 
-         function tulostajunat(junat) {
+
+
+         /*function tulostajunat(junat) {
              var junalista = document.getElementById("junalista")
 
              for (var i = 0; i < junat.length; i++) {
                  var juna = junat[i];
                  console.dir(juna);
-                 //Tällä seuraavalla konvertoidaan junan UTC-aika suomen aikaan.
-                 junalista.innerHTML += "<li>" + juna.trainCategory + ": " + juna.trainType + juna.trainNumber + " lähtee " + new Date(findLahtoAika(juna.timeTableRows, lasema) ).toLocaleDateString('FI')+ " kello: "+ new Date(findLahtoAika(juna.timeTableRows, lasema) ).toLocaleTimeString('FI').slice(0, -3); +"</li>"
-             }
 
+                 var junatyyppi;
+                 if (juna.trainCategory==="Commuter"){
+                     junatyyppi= "Lähijuna " + juna.commuterLineID;
+                 }else if (juna.trainCategory==="Long-distance"){
+                     junatyyppi="Kaukojuna";
+                 }else {
+                     junatyyppi=juna.trainCategory;
+                 }
+                 junalista.innerHTML += "<li>" + junatyyppi + ": " + juna.trainType + juna.trainNumber + " lähtee " + etsiLahtoAika(juna.timeTableRows, lasema)
+                     + " ja on perillä " + etsiSaapumisAika(juna.timeTableRows, perilla)+"</li>"
 
+             }*/
          }
          //haetaan junalistan aikatauluriveiltä rivi, jossa junan lähtöaika annetulta lähtöasemalta
-         function findLahtoAika(timetablerows, asema) {
+         function etsiLahtoAika(timetablerows, asema) {
             var tr;
             tr=timetablerows.find(function (row){
-                return row.stationShortCode===asema && row.type==="DEPARTURE"; //palauttaa rivin, jossa annettu asemalyhenne ja tyyppi LÄHTÖ
+                return row.stationShortCode===asema && row.type==="DEPARTURE"; //palauttaa rivin, jossa annettu asemalyhenne ja lähtöaika ko asemalta
             })
              console.dir(tr);
             return tr.scheduledTime;
          }
+
+         //haetaan junalistan aikatauluriveiltä rivi, jossa junan saapumisaika annetulle määränpääasemalle
+        function etsiSaapumisAika(timetablerows, asema) {
+            var tr;
+            tr=timetablerows.find(function(row){
+                return row.stationShortCode===asema && row.type==="ARRIVAL"; //palauttaa rivin, jossa annettu asemalyhenne ja saapumisaika ko asemalle
+            })
+            console.dir(tr);
+            return tr.scheduledTime
+
+        }
 
 
