@@ -74,10 +74,11 @@ var junat; // lista junista annetuilla asemilla
              }
 
          }
+         //haetaan junalistan aikatauluriveiltä rivi, jossa junan lähtöaika annetulta lähtöasemalta
          function findLahtoAika(timetablerows, asema) {
             var tr;
             tr=timetablerows.find(function (row){
-                return row.stationShortCode===asema && row.type==="DEPARTURE";
+                return row.stationShortCode===asema && row.type==="DEPARTURE"; //palauttaa rivin, jossa annettu asemalyhenne ja tyyppi LÄHTÖ
             })
              console.dir(tr);
             return tr.scheduledTime
