@@ -1,15 +1,38 @@
-var kt=localStorage.kirjautunutKayttaja
-document.writeln(kt);
-//
-// function check(form)/*function to check userid & password*/
-// {
-//     /*the following code checks whether the entered userid and password are matching*/
-//     if(form.userid.value == "myuserid" && form.pswrd.value == "mypswrd" || form.userid.value == "vieras" && form.pswrd.value =="vieras" ||form.userid.value == "europe" && form.pswrd.value == "parasbändiikinä")
-//     {
-//         window.open('https://www.europetheband.com/')/*opens the target page while Id & password matches*/
-//     }
-//     else
-//     {
-//         alert("Väärä salasana tai käyttäjänimi! \nKokeile esim. vieras/vieras")/*displays error message*/
-//     }
-// }
+window.onload = function () {
+    what();
+
+    function what() { //Tervehdys!
+        var kt = localStorage.kirjautunutKayttaja
+        var tervehdys = document.getElementById("hej")
+        tervehdys.innerHTML = "<h2>" + "Tervetuloa " + kt + "!";
+
+    };
+}
+function getLocalItems(k){
+    if (k){
+        try{
+            return JSON.parse(localStorage.getItem(k))
+        } catch(e){
+            return localStorage.getItem(k)
+        }
+    }
+}
+
+function setLocalItems(k, value){
+    if (typeof value === 'object') {
+        value = JSON.stringify(value)
+    }
+    localStorage.setItem(k, value)
+}
+
+// Put all entries in an object «store»
+let store = {}
+for (let i = 0, l = localStorage.length; i < l; i++) {
+    store[localStorage.key(i)] = getLocalItems(localStorage.key(i))
+}
+console.log(store)
+
+// Write all keys of «store» in localStorage
+for (let o in store) {
+    setLocalItems(o, store[o])
+}
