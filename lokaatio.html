@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lokaatio</title>
+
+    <style>
+        #map{
+            height:400px;
+            width:100%;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>kartta</h1>
+
+<div id="map"></div>
+
+<script>
+    function initMap(){
+        var options = {
+            zoom:8,
+            center: {lat: 60.1772711, lng: 24.8302072}
+        }
+        var map = new google.maps.Map(document.getElementById('map'), options);
+    }
+</script>
+
+<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoShwTBj-7Gd8VQ3H0wUnGbq7KVg1t1Hk&callback=initMap"-->
+<!--        >-->
+
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoShwTBj-7Gd8VQ3H0wUnGbq7KVg1t1Hk&callback=initMap"
+         async defer>
+
+</script>
+
+
+</body>
+</html>
