@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,9 @@
     <title>Lokaatio</title>
 
     <style>
-        #map{
-            height:400px;
-            width:100%;
+        #mapdiv{
+            height:500px;
+            width:500px;
         }
         html, body {
             height: 100%;
@@ -17,31 +18,46 @@
             padding: 0;
         }
     </style>
+    <script src="lokaatio.js"></script>
 </head>
+
 <body>
-
-<h1>kartta</h1>
-
-<div id="map"></div>
+<div id="mapdiv"></div>
+<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 
 <script>
-    function initMap(){
-        var options = {
-            zoom:8,
-            center: {lat: 60.1772711, lng: 24.8302072}
+
+    function haeKayttaja(){
+        navigator.geolocation.getCurrentPosition(success, error,{enableHighAccuracy:true});
+        function success(data){
+            console.dir("käyttäjän paikannus: " + data.coords.latitude + ", " + data.coords.longitude)
         }
-        var map = new google.maps.Map(document.getElementById('map'), options);
+        function error(e) {
+            console.dir(e)
+        }
+        return data.coords.longitude +","+ data.coords.latitude;
     }
+
+    map = new OpenLayers.Map("mapdiv");
+    map.addLayer(new OpenLayers.Layer.OSM());
+
+    var lonLat = new OpenLayers.LonLat(24.8302072, 60.1772711)
+        .transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            map.getProjectionObject() // to Spherical Mercator Projection
+        );
+
+
+    // 24.8302072, 60.1772711
+    //haeKayttaja() <- aseta OpenLayers objectiin arvoksi kun toimii
+    var zoom=16;
+
+    var markers = new OpenLayers.Layer.Markers( "Markers" );
+    map.addLayer(markers);
+
+    markers.addMarker(new OpenLayers.Marker(lonLat));
+
+    map.setCenter (lonLat, zoom);
+
 </script>
-
-<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoShwTBj-7Gd8VQ3H0wUnGbq7KVg1t1Hk&callback=initMap"-->
-<!--        >-->
-
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoShwTBj-7Gd8VQ3H0wUnGbq7KVg1t1Hk&callback=initMap"
-         async defer>
-
-</script>
-
-
-</body>
-</html>
+</body></html>
