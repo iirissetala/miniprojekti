@@ -7,6 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lokaatio</title>
 
+    <!--    alla linkitys leaflet CSS kirjastoon-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin=""/>
+    <!--    alla linkitys leaflet Javascript ominaisuuksiin-->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+            integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+            crossorigin=""></script>
+
+
     <style>
         #mapdiv{
             height:500px;
@@ -18,46 +28,13 @@
             padding: 0;
         }
     </style>
-    <script src="lokaatio.js"></script>
+
 </head>
 
 <body>
+
 <div id="mapdiv"></div>
-<script src="http://www.openlayers.org/api/OpenLayers.js"></script>
 
-<script>
+<script src="lokaatio.js"></script>
 
-    function haeKayttaja(){
-        navigator.geolocation.getCurrentPosition(success, error,{enableHighAccuracy:true});
-        function success(data){
-            console.dir("käyttäjän paikannus: " + data.coords.latitude + ", " + data.coords.longitude)
-        }
-        function error(e) {
-            console.dir(e)
-        }
-        return data.coords.longitude +","+ data.coords.latitude;
-    }
-
-    map = new OpenLayers.Map("mapdiv");
-    map.addLayer(new OpenLayers.Layer.OSM());
-
-    var lonLat = new OpenLayers.LonLat(24.8302072, 60.1772711)
-        .transform(
-            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
-            map.getProjectionObject() // to Spherical Mercator Projection
-        );
-
-
-    // 24.8302072, 60.1772711
-    //haeKayttaja() <- aseta OpenLayers objectiin arvoksi kun toimii
-    var zoom=16;
-
-    var markers = new OpenLayers.Layer.Markers( "Markers" );
-    map.addLayer(markers);
-
-    markers.addMarker(new OpenLayers.Marker(lonLat));
-
-    map.setCenter (lonLat, zoom);
-
-</script>
 </body></html>
