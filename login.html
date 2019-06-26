@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="Etusivutyyli.css">
     <script src="login.js"></script>
 </head>
 <body>
@@ -14,8 +15,8 @@
 <div id="vasen">
     <h2>Junahaku</h2>
     <table>
-        <tr><td>Lähtöasema</td><td><input list="asemat" id="lahtoasema"></td></tr>
-        <tr><td>Määränpää</td><td><input list="asemat" id="maaranpaa"></td></tr>
+        <tr><td>Lähtöasema</td><td><input list="asemat" value="HKI" id="lahtoasema"></td></tr>
+        <tr><td>Määränpää</td><td><input list="asemat" value="JNS" id="maaranpaa"></td></tr>
     </table>
 
 
@@ -23,7 +24,21 @@
 
     <input type="button" value="Hae junat" id="pnk" onclick="naytaValitut()">
 </div>
-<p></p>
+<div id="bottom">
+    <ul id="tulos"></ul>
+    <ul id="toinenkaupunki"></ul>
+
+    <ul id="junalista"></ul>
+
+
+</div>
+<table id="junataulukko">
+    <tr></tr>
+</table>
+<input type="button" value="Hae kaikki" id="pnk2" onclick="haeKaikkiJunat()">
+<table id="kokojunataulukko">
+    <tr></tr>
+<p id="historia"></p>
 
 </body>
 </html>
