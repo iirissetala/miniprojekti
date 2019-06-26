@@ -70,7 +70,7 @@ var junat; // lista junista annetuilla asemilla
          }
         function tulostajunat(junat) {
             var junataulukko=document.getElementById("junataulukko")
-            junataulukko.innerHTML="<tr>" + "<th>" + "Junatyyppi" + "<th>" + "Junan numero" + "<th>" + "Lähtöaika" + "<th>" + "Saapuu määränpäähän" + "</tr>"
+            junataulukko.innerHTML="<tr>" + "<th>" + "Junatyyppi" + "<th>" + "Junan numero" + "<th>"+ "Lähtöpäivä" +"<th>" + "Lähtöaika" + "<th>" + "Saapuu määränpäähän" + "</tr>"
             for (var i=0; i<junat.length; i++){
                 var juna = junat[i];
                 console.dir(juna);
@@ -82,8 +82,8 @@ var junat; // lista junista annetuilla asemilla
                 }else {
                     junatyyppi=juna.trainCategory;
                 }
-
-             junataulukko.innerHTML+="<tr>" + "<td>" + junatyyppi + "<td>" + juna.trainType + juna.trainNumber + "<td>" + etsiLahtoAika(juna.timeTableRows, lasema)
+ //new Date oliolla tehdään datasta saadusta ajasta(CET) Suomen aikaa saapumisaika
+             junataulukko.innerHTML+="<tr>" + "<td>" + junatyyppi + "<td>" + juna.trainType + juna.trainNumber + "<td>" + new Date(etsiLahtoAika(juna.timeTableRows, lasema) ).toLocaleDateString('FI') +"<td>" + new Date(etsiLahtoAika(juna.timeTableRows, lasema) ).toLocaleTimeString('FI').slice(0, -3);
                  + "<td>" + etsiSaapumisAika(juna.timeTableRows, perilla)+"</tr>"
     }
 
@@ -95,6 +95,7 @@ var junat; // lista junista annetuilla asemilla
              for (var i = 0; i < junat.length; i++) {
                  var juna = junat[i];
                  console.dir(juna);
+
                  var junatyyppi;
                  if (juna.trainCategory==="Commuter"){
                      junatyyppi= "Lähijuna " + juna.commuterLineID;
@@ -107,7 +108,6 @@ var junat; // lista junista annetuilla asemilla
                      + " ja on perillä " + etsiSaapumisAika(juna.timeTableRows, perilla)+"</li>"
 
              }*/
-
          }
          //haetaan junalistan aikatauluriveiltä rivi, jossa junan lähtöaika annetulta lähtöasemalta
          function etsiLahtoAika(timetablerows, asema) {
@@ -116,7 +116,7 @@ var junat; // lista junista annetuilla asemilla
                 return row.stationShortCode===asema && row.type==="DEPARTURE"; //palauttaa rivin, jossa annettu asemalyhenne ja lähtöaika ko asemalta
             })
              console.dir(tr);
-            return tr.scheduledTime
+            return tr.scheduledTime;
          }
 
          //haetaan junalistan aikatauluriveiltä rivi, jossa junan saapumisaika annetulle määränpääasemalle
