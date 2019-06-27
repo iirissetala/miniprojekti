@@ -16,17 +16,18 @@
     <h2>Junahaku</h2>
     <form>
     <table>
-        <tr><td>Lähtöasema</td><td><input list="asemat" value="HKI" id="lahtoasema"></td></tr>
-        <tr><td>Määränpää</td><td><input list="asemat" value="JNS" id="maaranpaa"></td></tr>
+        <tr><td>Lähtöasema</td><td><input list="asemat" id="lahtoasema"></td></tr>
+        <tr><td>Määränpää</td><td><input list="asemat" id="maaranpaa"></td></tr>
     </table>
     </form>
 
-    <datalist id="asemat"></datalist>
+    <datalist id="asemat"></datalist> <!--tähän haetaan asematiedot (lyhenne ja koko nimi)-->
 
     <input type="button" value="Hae junat" id="pnkLogin" onclick="naytaValitut()">
 </div>
 <div id="bottom">
     <ul id="tulos"></ul>
+<!--    Näitä ei taideta käyttää ollenkaan (toinenkaupunki ja junalista)-->
     <ul id="toinenkaupunki"></ul>
 
     <ul id="junalista"></ul>
