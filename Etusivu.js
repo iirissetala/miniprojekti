@@ -62,7 +62,7 @@ function junatilanmuutos() {
         junat = JSON.parse(junapyynto.responseText);
         if (junat.length > 0){
             tulostajunat(junat);
-            document.getElementById("pnk2").style.display = "block";
+            document.getElementById("pnk2").style.display="block";
 
         }else{
             document.getElementById("tulos").innerHTML="Annettujen asemien välillä ei kulje suoraa junayhteyttä."
