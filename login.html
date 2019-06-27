@@ -2,11 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
     <title>TÄMÄHÄN TOIMII!</title>
+
     <link rel="stylesheet" href="Etusivutyyli.css">
-    <script src="login.js"></script>
+    <script src="Etusivu.js"></script>
+
 </head>
 <body>
+
+
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -14,18 +26,22 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Etusivu</a></li>
-            <li><a href="lokaatio.html">Kartta asemista</a></li>
-            <li><a href="galleria.html">Galleria</a></li>
+            <li><a href="#">Kartta asemista</a></li>
+            <li><a href="#">Galleria</a></li>
             <li><a href="#">Tietoa tekijöistä</a></li>
+            <li><a href="Etusivu.html">Kirjaudu ulos </a></li>
         </ul>
     </div>
 </nav>
-<div id="top">
-
-    <input type="button" value="Kirjaudu ulos" id="pnkUlos" onclick="window.location.href='Etusivu.html'"><!--kirjaudu ulos nappi-->
+<div class="jumbotron">
+    <h1>Matkahaku</h1>
+    <p>Olet kirjautunut sisään. Täällä näet aiemmat hakusi. </p>
 </div>
-<p id="hej"></p><!--käyttäjän tervehdys-->
-<div id="vasen">
+<div class="container">
+    
+
+<div class=row>
+    <div class="col-lg-6 " style="background-color: darkseagreen;">
     <h2>Junahaku</h2>
     <form>
     <table>
@@ -36,7 +52,7 @@
 
     <datalist id="asemat"></datalist> <!--tähän haetaan asematiedot (lyhenne ja koko nimi)-->
 
-    <input type="button" value="Hae junat" id="pnkLogin" onclick="naytaValitut()">
+    <input type="button" class="btn btn-warning" value="Hae junat" id="pnkLogin" onclick="naytaValitut()">
 </div>
 <div id="bottom">
     <ul id="tulos"></ul>
@@ -47,8 +63,8 @@
 
 
 </div>
-<table id="junataulukko">
-    <tr></tr>
+<table class="table table-striped">
+    <tbody id="junataulukko"></tbody>
 </table>
 <input type="button" value="Hae kaikki" id="pnkLogin2" onclick="haeKaikkiJunat()">
 <table id="kokojunataulukko">
@@ -57,5 +73,7 @@
     <tr>Tässä viimeisin hakusi:</tr>
 </table>
 </table>
+</div>
+</div>
 </body>
 </html>
