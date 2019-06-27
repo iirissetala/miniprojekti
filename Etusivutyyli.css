@@ -28,3 +28,7 @@ body{
 }
 #pnk2 { display: none;}
 #pnkLogin2 {display: none;}
+
+.myNavbar{
+    background-color: green;
+}
