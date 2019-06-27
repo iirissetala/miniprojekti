@@ -14,11 +14,12 @@
 <p id="hej"></p><!--käyttäjän tervehdys-->
 <div id="vasen">
     <h2>Junahaku</h2>
+    <form>
     <table>
         <tr><td>Lähtöasema</td><td><input list="asemat" value="HKI" id="lahtoasema"></td></tr>
         <tr><td>Määränpää</td><td><input list="asemat" value="JNS" id="maaranpaa"></td></tr>
     </table>
-
+    </form>
 
     <datalist id="asemat"></datalist>
 
@@ -38,7 +39,9 @@
 <input type="button" value="Hae kaikki" id="pnkLogin2" onclick="haeKaikkiJunat()">
 <table id="kokojunataulukko">
     <tr></tr>
-<p id="historia"></p>
+<table  id="historia">
+    <tr>Tässä viimeisin hakusi:</tr>
+</table>
 </table>
 </body>
 </html>

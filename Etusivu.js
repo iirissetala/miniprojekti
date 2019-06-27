@@ -71,9 +71,13 @@ function junatilanmuutos() {
     }
 }
 function tulostajunat(junat) {
-    var junataulukko=document.getElementById("junataulukko")
+    var junataulukko=document.getElementById("junataulukko");
+    var k=5;
     junataulukko.innerHTML="<tr>" + "<th>" + "Junatyyppi" + "<th>" + "Junan numero" + "<th>"+ "Lähtöpäivä" +"<th>" + "Lähtöaika" + "<th>" + "Saapumispäivä" + "<th>" + "Saapumisaika" + "</tr>";
-    for (var i=0; i< 5; i++){
+    if(junat.length<5){
+        k=junat.length;
+    }
+    for (var i=0; i< k; i++){
         var juna = junat[i];
         console.dir(juna);
         var junatyyppi;
