@@ -219,9 +219,7 @@ function check(form)/*function to check userid & password*/
         localStorage.kirjautunutKayttaja=form.userid.value;
         window.location.href="login.html"/*opens the target page while Id & password matches*/
 
-    }
-    else
-    {
+    }else{
         alert("Väärä salasana tai käyttäjänimi! \nKokeile esim. vieras/vieras")/*displays error message*/
     }
 }
