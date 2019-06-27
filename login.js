@@ -72,7 +72,7 @@ function junatilanmuutos() {
         junat = JSON.parse(junapyynto.responseText);
         if (junat.length > 0){
             tulostajunat(junat);
-            document.getElementById("pnk2").style.display="block";
+            document.getElementById("pnkLogin2").style.display="block";
 
         }else{
             document.getElementById("tulos").innerHTML="Annettujen asemien välillä ei kulje suoraa junayhteyttä."
@@ -218,5 +218,5 @@ const lisaaHaettu = (ev)=>{ //haetut junat arraylistana
     localStorage.setItem('Isäsihakemat', JSON.stringify(haetutjunat));
 }
 document.addEventListener('DOMContentLoaded', ()=>{
-    document.getElementById('pnk').addEventListener('click', lisaaHaettu)
+    document.getElementById('pnkLogin').addEventListener('click', lisaaHaettu)
 });
