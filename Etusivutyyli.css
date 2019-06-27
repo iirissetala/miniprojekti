@@ -16,7 +16,9 @@ h2{
 p{
     font-family: "Comic Sans MS";
 }
-
+#junataulukko{
+    class: "table table-striped";
+}
 #pnk2 { display: none;}
 
 table{
