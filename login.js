@@ -5,7 +5,7 @@ window.onload = function () {
     function what() { //Tervehdys!
         var kt = localStorage.kirjautunutKayttaja
         var tervehdys = document.getElementById("hej")
-        tervehdys.innerHTML = "<h2>" + "Tervetuloa " + kt + "!";
+        tervehdys.innerHTML = "<h1>" + "Tervetuloa " + kt + "!</h1>";
 
     };
 }
@@ -237,6 +237,7 @@ function how() {
             var haku = tulostus[i];
             var historiataulukko = document.getElementById("historia")
             console.log((haku.lahto+haku.maaranpaa))
+            historiataulukko.innerHTML="<tr><th>" + "Lähtöasema" + "</th><th>" + "Määränpää </th></tr>"
             historiataulukko.innerHTML+="<tr>" + "<td>" + haku.lahto + "<td>" + haku.maaranpaa + "</tr>"
         }
 
