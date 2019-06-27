@@ -2,16 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Matkahaku</title>
+
+    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <title>TÄMÄHÄN TOIMII!</title>
+
     <link rel="stylesheet" href="Etusivutyyli.css">
     <script src="Etusivu.js"></script>
 
 </head>
 <body>
+
+
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -39,17 +45,18 @@
     <h2>Junahaku</h2>
     <form>
     <table>
-        <tr><td>Lähtöasema</td><td><input list="asemat" value="HKI" id="lahtoasema"></td></tr>
-        <tr><td>Määränpää</td><td><input list="asemat" value="JNS" id="maaranpaa"></td></tr>
+        <tr><td>Lähtöasema</td><td><input list="asemat" id="lahtoasema"></td></tr>
+        <tr><td>Määränpää</td><td><input list="asemat" id="maaranpaa"></td></tr>
     </table>
     </form>
 
-    <datalist id="asemat"></datalist>
+    <datalist id="asemat"></datalist> <!--tähän haetaan asematiedot (lyhenne ja koko nimi)-->
 
     <input type="button" class="btn btn-warning" value="Hae junat" id="pnkLogin" onclick="naytaValitut()">
 </div>
 <div id="bottom">
     <ul id="tulos"></ul>
+<!--    Näitä ei taideta käyttää ollenkaan (toinenkaupunki ja junalista)-->
     <ul id="toinenkaupunki"></ul>
 
     <ul id="junalista"></ul>

@@ -9,7 +9,7 @@ var junat; // lista junista annetuilla asemilla
  function init() {
      hae();
  }
-//Haetaan asemat, joista käyttäjä saa valita lähtö- ja pääteaseman
+//Haetaan asemat, joista käyttäjä saa valita lähtö- ja pääteaseman (lyhenne ja koko nimi)
      function hae() {
          asemapyynto = new XMLHttpRequest();
          asemapyynto.onreadystatechange = tilanmuutos;
@@ -17,15 +17,18 @@ var junat; // lista junista annetuilla asemilla
          asemapyynto.send();
          console.log("Pyyntö lähetetty");
      }
+     //kerätään asemat listalle
      function tilanmuutos() {
          console.dir(asemapyynto);
          if (asemapyynto.readyState === 4) {
              console.log(asemapyynto.responseText);
-             //document.getElementById("jotain").innerText=asemapyynto.responseText;
              asemat = JSON.parse(asemapyynto.responseText)
              tulosta(asemat);
          }
      }
+
+     //Kaikkien asemien lyhenne ja koko nimi annetaan käyttäjälle listana kun hän syöttää lähtö- ja määränpääasemia
+    //Lyhenne tarvitaan seuraavaan vaiheeseen kun etsitään junat annetulla välillä
      function tulosta(asemat) {
          var asemalista = document.getElementById("asemat")
          for (var i = 0; i < asemat.length; i++) {
@@ -34,17 +37,15 @@ var junat; // lista junista annetuilla asemilla
              asemalista.innerHTML += "<option value= " + kaupunki.stationShortCode + ">" + kaupunki.stationName + "</option>"
          }
      }
-//Valitut asemat otetaan talteen, säilötään local storageen ja käytetään seuraavaan hakuun, jossa haetaan junat annettujen asemien välillä
+//Käyttäjän antamat asemat otetaan talteen ja käytetään seuraavaan hakuun, jossa haetaan junat annettujen asemien välillä
      function naytaValitut() {
          lasema = document.getElementById("lahtoasema").value;
-         localStorage.lahtoasema = lasema;
+         localStorage.lahtoasema = lasema; //tällä ei tehdä mitään
          perilla = document.getElementById("maaranpaa").value;
-         localStorage.perilla = perilla;
+         localStorage.perilla = perilla; //tällä ei tehdä mitään
          document.getElementById("tulos").innerHTML="Junat välillä " + lasema + " - " + perilla + ":";
          haejunat();
      }
-
-
 
          function haejunat() {
              junapyynto = new XMLHttpRequest();

@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Matkahaku</title>
+
+    <title>ETUSIVU</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -19,9 +21,9 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Etusivu</a></li>
-            <li><a href="#">Kartta asemista</a></li>
-            <li><a href="#">Galleria</a></li>
-            <li><a href="#">Tietoa tekijöistä</a></li>
+            <li><a href="lokaatio.html">Kartta asemista</a></li>
+            <li><a href="galleria.html">Galleria</a></li>
+            <li><a href="tekijoita.html">Tietoa tekijöistä</a></li>
         </ul>
     </div>
 </nav>
@@ -38,8 +40,8 @@
 <div class="col-lg-8 " style="background-color: darkseagreen;">
     <h2>Junahaku</h2>
     <table id="junalomake">
-        <tr><td>Lähtöasema</td><td><input list="asemat" value="HKI" id="lahtoasema"></td></tr>
-        <tr><td>Määränpää</td><td><input list="asemat" value="JNS" id="maaranpaa"></td></tr>
+        <tr><td>Lähtöasema</td><td><input list="asemat" id="lahtoasema"></td></tr>
+        <tr><td>Määränpää</td><td><input list="asemat" id="maaranpaa"></td></tr>
     </table>
 
 
@@ -61,6 +63,7 @@
 </div>
     <div id="bottom">
     <ul id="tulos"></ul>
+<!--        toinenkaupunkia ei taideta käyttää missään, eikä myöskään junalistaa-->
     <ul id="toinenkaupunki"></ul>
 
     <ul id="junalista"></ul>

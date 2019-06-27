@@ -37,6 +37,7 @@ function tilanmuutos() {
         tulosta(asemat);
     }
 }
+//asemien lyhenne ja koko nimi valikkoon kun käyttäjä syöttää lähtö-ja määränpääasemia (ehdottaa sopivia kirjoitetun mukaan)
 function tulosta(asemat) {
     var asemalista = document.getElementById("asemat")
     for (var i = 0; i < asemat.length; i++) {
@@ -46,18 +47,16 @@ function tulosta(asemat) {
 
     }
 }
-//Valitut asemat otetaan talteen, säilötään local storageen ja käytetään seuraavaan hakuun, jossa haetaan junat annettujen asemien välillä
+//Valitut asemat otetaan talteen ja käytetään seuraavaan hakuun, jossa haetaan junat annettujen asemien välillä
 function naytaValitut() {
     lasema = document.getElementById("lahtoasema").value;
-    localStorage.lahtoasema = lasema;
+    localStorage.lahtoasema = lasema; //toteutettiin eri tavalla myöhemmin, ei käytetä mihinkään
     perilla = document.getElementById("maaranpaa").value;
-    localStorage.perilla = perilla;
+    localStorage.perilla = perilla; //toteutettiin eri tavalla myöhemmin
     document.getElementById("tulos").innerHTML="Junat välillä " + lasema + " - " + perilla + ":";
     haejunat();
 }
-
-
-
+//haetaan junat annetuilla asemilla
 function haejunat() {
     junapyynto = new XMLHttpRequest();
     junapyynto.onreadystatechange = junatilanmuutos;
@@ -65,7 +64,7 @@ function haejunat() {
     junapyynto.send();
     console.log("Pyyntö lähetetty");
 }
-
+//jos suoraa junayhteyttä ei ole, ei tulosteta taulukkoa ollenkaan. tuodaan käyttäjälle näkyviin painike, jolla hakea kaikki junat
 function junatilanmuutos() {
     console.dir(junapyynto);
     if (junapyynto.readyState === 4) {
@@ -82,6 +81,7 @@ function junatilanmuutos() {
 
     }
 }
+//tulostaa ensimmäiset viisi junaa (tai jos junia vähemmän, haetaan vain oikealla määrällä eikä 5:llä)
 function tulostajunat(junat) {
     var junataulukko=document.getElementById("junataulukko")
     var k=5;
@@ -106,7 +106,7 @@ function tulostajunat(junat) {
     }
 
 
-
+//tämä oli aiempi metodi, jossa junat tulostettiin listaan. korvattiin taulukolla
     /*function tulostajunat(junat) {
         var junalista = document.getElementById("junalista")
 
@@ -147,7 +147,7 @@ function etsiSaapumisAika(timetablerows, asema) {
     return tr.scheduledTime
 
 }
-
+//samat metodit kuin yllä ensimmäisten junien hakuun. voisi varmaan tehdä siistimminkin eikä kokonaan uutta, mutta....
 function haeKaikkiJunat() {
     junapyynto = new XMLHttpRequest();
     junapyynto.onreadystatechange = lyhytJunatilanmuutos;
@@ -164,9 +164,9 @@ function lyhytJunatilanmuutos() {
         junat = JSON.parse(junapyynto.responseText);
         tulostakaikkijunat(junat);
 
-
     }
 }
+//tulostetaan käyttäjälle näkyviin kaikki junat (indeksistä 5 eteenpäin)
 function tulostakaikkijunat(junat) {
     var junataulukko = document.getElementById("kokojunataulukko")
     junataulukko.innerHTML = "<tr>" + "<th>" + "Junatyyppi" + "<th>" + "Junan numero" + "<th>" + "Lähtöpäivä" + "<th>" + "Lähtöaika" + "<th>" + "Saapumispäivä" + "<th>" + "Saapumisaika" + "</tr>";
@@ -208,7 +208,7 @@ function tulostakaikkijunat(junat) {
 
     }
 }
-
+//otetaan talteen käyttäjän tekemät haut ja tehdään niistä lista local storageen, jotta ne voidaan näyttää myöhemmin
 var kayttaja = localStorage.kirjautunutKayttaja;
 
 var haetutjunat= []; //tallenetaan haettuja lähtöjä määränpää
@@ -227,9 +227,7 @@ const lisaaHaettu = (ev)=>{ //haetut junat arraylistana
 document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById('pnkLogin').addEventListener('click', lisaaHaettu)
 });
-
-
-
+//tehdään local storageen tallennetuista käyttäjän hauista lista, joka esitetään seuraavan kirjautumisen yhteydessä
 function how() {
 
         var kayttajanhistoria = localStorage.getItem(kayttaja);
