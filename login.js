@@ -1,5 +1,6 @@
 window.onload = function () {
     what();
+    how();
 
     function what() { //Tervehdys!
         var kt = localStorage.kirjautunutKayttaja
@@ -42,6 +43,7 @@ function tulosta(asemat) {
         var kaupunki = asemat[i];
         console.dir(kaupunki);
         asemalista.innerHTML += "<option value= " + kaupunki.stationShortCode + ">" + kaupunki.stationName + "</option>"
+
     }
 }
 //Valitut asemat otetaan talteen, säilötään local storageen ja käytetään seuraavaan hakuun, jossa haetaan junat annettujen asemien välillä
@@ -82,8 +84,12 @@ function junatilanmuutos() {
 }
 function tulostajunat(junat) {
     var junataulukko=document.getElementById("junataulukko")
+    var k=5;
     junataulukko.innerHTML="<tr>" + "<th>" + "Junatyyppi" + "<th>" + "Junan numero" + "<th>"+ "Lähtöpäivä" +"<th>" + "Lähtöaika" + "<th>" + "Saapumispäivä" + "<th>" + "Saapumisaika" + "</tr>";
-    for (var i=0; i< 5; i++){
+    if(junat.length<5){
+        k=junat.length;
+    }
+    for (var i=0; i< k; i++){
         var juna = junat[i];
         console.dir(juna);
         var junatyyppi;
@@ -203,6 +209,7 @@ function tulostakaikkijunat(junat) {
     }
 }
 
+var kayttaja = localStorage.kirjautunutKayttaja;
 
 var haetutjunat= []; //tallenetaan haettuja lähtöjä määränpää
 
@@ -215,8 +222,25 @@ const lisaaHaettu = (ev)=>{ //haetut junat arraylistana
     }
     haetutjunat.push(juna);
     document.forms[0].reset();
-    localStorage.setItem('Isäsihakemat', JSON.stringify(haetutjunat));
+    localStorage.setItem(kayttaja, JSON.stringify(haetutjunat));
 }
 document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById('pnkLogin').addEventListener('click', lisaaHaettu)
 });
+
+
+
+function how() {
+
+        var kayttajanhistoria = localStorage.getItem(kayttaja);
+        console.log('test: ', JSON.parse(kayttajanhistoria));
+        var tulostus = JSON.parse(kayttajanhistoria)
+        for (var i=0; i<tulostus.length; i++){
+            var haku = tulostus[i];
+            var historiataulukko = document.getElementById("historia")
+            console.log((haku.lahto+haku.maaranpaa))
+            historiataulukko.innerHTML+="<tr>" + "<td>" + haku.lahto + "<td>" + haku.maaranpaa + "</tr>"
+        }
+
+
+    };
