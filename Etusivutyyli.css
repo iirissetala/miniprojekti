@@ -1,5 +1,13 @@
 body{
     background-color: #c3c3c3;
+    font-family: Bahnschrift;
+}
+.jumbotron{
+    background-color: rgba(00, 140, 00, 0.6);
+    font-family: Bahnschrift;
+    color: white;
+    text-align: center;
+
 }
 #vasen{
     float: left;
@@ -14,24 +22,9 @@ body{
     width: 100%;
 }
 
-h2{
-    font-family: "Comic Sans MS";
-}
-p{
-    font-family: "Comic Sans MS";
-}
+
 #junataulukko{
     class: "table table-striped";
 }
 #pnk2 { display: none;}
 #pnkLogin2 {display: none;}
-
-table{
-    font-family: "Comic Sans MS";
-}
-form{
-    font-family: "Comic Sans MS";
-}
-input{
-    font-family: "Comic Sans MS";
-}
