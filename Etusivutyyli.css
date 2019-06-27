@@ -1,3 +1,6 @@
+body{
+    background-color: #c3c3c3;
+}
 #vasen{
     float: left;
     width: 50%;
@@ -10,6 +13,7 @@
     float: bottom;
     width: 100%;
 }
+
 h2{
     font-family: "Comic Sans MS";
 }

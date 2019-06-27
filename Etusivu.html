@@ -15,6 +15,19 @@
 <!--    lg (for laptops and desktops - screens equal to or greater than 1200px wide)-->
 </head>
 <body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Matkahaku</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Etusivu</a></li>
+            <li><a href="#">Kartta asemista</a></li>
+            <li><a href="#">Galleria</a></li>
+            <li><a href="#">Tietoa tekijöistä</a></li>
+        </ul>
+    </div>
+</nav>
 <div class="jumbotron">
     <h1>Tervetuloa matkahakuun</h1>
     <p>Näiltä sivuilta löydät juna-aikatauluhakukoneen suorille junayhteyksille. </p>
@@ -35,7 +48,7 @@
 
     <datalist id="asemat"></datalist>
 <!---->
-    <input type="button" value="Hae junat" id="pnk" onclick="naytaValitut()">
+    <input type="button" class="btn btn-warning" value="Hae junat" id="pnk" onclick="naytaValitut()">
 </div>
 <div class ="col-lg-4" style="background-color: floralwhite".col->
     <h2>Kirjaudu sisään</h2>
@@ -44,8 +57,8 @@
     <form name="login">
         <tr><td>Käyttäjänimi</td><td><input type="text" name="userid"/></td></tr>
         <tr><td>Salasana</td><td><input type="password" name="pswrd"/></td></tr>
-        <tr><td><input type="button" onclick="check(this.form)" value="Kirjaudu"/></td><td>
-            <input type="reset" value="Peruuta"/></td></tr>
+        <tr><td><input type="button" class="btn btn-primary" onclick="check(this.form)" value="Kirjaudu"/></td><td>
+            <input type="reset" class="btn btn-danger" value="Peruuta"/></td></tr>
     </form>
     </table>
 </div>
@@ -60,8 +73,8 @@
 <table class="table table-striped">
     <tbody id="junataulukko"></tbody>
 </table>
-<input type="button" value="Hae kaikki" id="pnk2" onclick="haeKaikkiJunat()">
-<table>
+<input type="button" class="btn btn-warning" value="Hae kaikki" id="pnk2" onclick="haeKaikkiJunat()">
+<table class="table table-striped">
     <tbody id="kokojunataulukko"></tbody>
 </table>
 </div>
