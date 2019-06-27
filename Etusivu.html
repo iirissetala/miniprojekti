@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="Etusivutyyli.css">
     <script src="Etusivu.js"></script>
-
+    <!--//xs (for phones - screens less than 768px wide)-->
+<!--    sm (for tablets - screens equal to or greater than 768px wide)-->
+<!--    md (for small laptops - screens equal to or greater than 992px wide)-->
+<!--    lg (for laptops and desktops - screens equal to or greater than 1200px wide)-->
 </head>
 <body>
-<div id="vasen">
+<div class="jumbotron">
+    <h1>Tervetuloa matkahakuun</h1>
+    <p>Näiltä sivuilta löydät juna-aikatauluhakukoneen suorille junayhteyksille. </p>
+</div>
+<div class ="container">
+    <blockquote.reverse>
+        <p class="text-right lead">"Minun asemani löytyi hetkessä!"</p>
+        <footer class="text-right">- Matkailija Järvenpäästä</footer>
+    </blockquote.reverse>
+<div class=row>
+<div class="col-lg-8 " style="background-color: darkseagreen;">
     <h2>Junahaku</h2>
-    <table>
+    <table id="junalomake">
         <tr><td>Lähtöasema</td><td><input list="asemat" value="HKI" id="lahtoasema"></td></tr>
         <tr><td>Määränpää</td><td><input list="asemat" value="JNS" id="maaranpaa"></td></tr>
     </table>
@@ -20,7 +37,7 @@
 <!---->
     <input type="button" value="Hae junat" id="pnk" onclick="naytaValitut()">
 </div>
-<div id="oikea">
+<div class ="col-lg-4" style="background-color: floralwhite".col->
     <h2>Kirjaudu sisään</h2>
     <table>
 
@@ -40,12 +57,14 @@
 
 
     </div>
-<table id="junataulukko">
-    <tr></tr>
+<table class="table table-striped">
+    <tbody id="junataulukko"></tbody>
 </table>
 <input type="button" value="Hae kaikki" id="pnk2" onclick="haeKaikkiJunat()">
-<table id="kokojunataulukko">
-    <tr></tr>
+<table>
+    <tbody id="kokojunataulukko"></tbody>
 </table>
+</div>
+</div>
 </body>
 </html>
