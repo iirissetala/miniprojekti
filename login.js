@@ -232,13 +232,13 @@ function how() {
 
         var kayttajanhistoria = localStorage.getItem(kayttaja);
         console.log('test: ', JSON.parse(kayttajanhistoria));
+        var historiataulukko = document.getElementById("historia")
+        historiataulukko.innerHTML="<tr><th>" + "Lähtöasema" + "</th><th>" + "Määränpää </th></tr>"
         var tulostus = JSON.parse(kayttajanhistoria)
         for (var i=0; i<tulostus.length; i++){
             var haku = tulostus[i];
-            var historiataulukko = document.getElementById("historia")
             console.log((haku.lahto+haku.maaranpaa))
-            historiataulukko.innerHTML="<tr><th>" + "Lähtöasema" + "</th><th>" + "Määränpää </th></tr>"
-            historiataulukko.innerHTML+="<tr>" + "<td>" + haku.lahto + "<td>" + haku.maaranpaa + "</tr>"
+            historiataulukko.innerHTML+="<tr>" + "<td>" + haku.lahto + "<td>" + haku.maaranpaa + "</tr>";
         }
 
 
