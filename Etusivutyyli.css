@@ -2,13 +2,14 @@ body{
     background-color: #c3c3c3;
     font-family: Bahnschrift;
 }
-.jumbotron{
+.jumbotron {
     background-color: rgba(00, 140, 00, 0.6);
     font-family: Bahnschrift;
     color: white;
     text-align: center;
-
 }
+
+
 #vasen{
     float: left;
     width: 50%;
