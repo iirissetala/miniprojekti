@@ -31,6 +31,10 @@ body{
 #pnk2 { display: none;}
 #pnkLogin2 {display: none;}
 
+.row{
+    border-radius: 10px;
+    background-color: #cacac9;
+}
 .container-fluid {
     background-color: forestgreen;
     padding-left: 20px;
@@ -46,6 +50,11 @@ body{
 Seuraavassa muotoilussa väliviivalla saadaan muotoilu vaikuttamaan navbar-inversen sisällä kaikkiin lapsiin riippumatta kuinka syvällä
 juuressa ne ovat. Jos välissä on väkänen, se vaikuttaa suoriin lapsiin, kuten juurikin .navbar-nav>.active
 */
+.navbar-inverse .navbar-nav>.active>a:hover{
+    color: #f8f8ff;
+    background-color: #ff5500;
+    border-radius: 5px;
+}
 .navbar-inverse .navbar-nav>.active>a{
     color: #f8f8ff;
     background-color: #ff3800c2;
