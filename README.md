@@ -5,4 +5,4 @@ Sovellus hakee junayhteyksien tiedot Digitrafficin tarjoamasta avoimen datan pal
 
 Academyn 12 vk koulutuksen viikolla 4 tehty miniprojekti. Toteutettiin ryhmätyönä 4 hengen ryhmässä pitkälti parikoodaten.
 Käytetyt teknologiat: HTML, Javascript, CSS. 
-Oma osuus: junahaun toteutus Digitrafficin palvelusta ja näyttäminen omassa sovelluksessa
+Oma osuus: junahaun toteutus Digitrafficin palvelusta ja tulosten näyttäminen omassa sovelluksessa
