@@ -1,4 +1,4 @@
-# miniprojekti
+Miniprojekti: junahaku
 
 Sovelluksen avulla voi hakea suoraa junayhteyttä haluttujen asemien välillä. Sovellus hakee junayhteyksien tiedot Digitrafficin
 tarjoamasta avoimen datan palvelusta.
